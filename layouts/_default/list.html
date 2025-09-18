@@ -2,7 +2,7 @@
 <main>
   <h1 style="margin-bottom: 0px;">Posts</h1>
   <p style="font-size: 1.23rem;">
-    Read my blogs: <a href="{{ $.Param "blogUrl" }}">{{ $.Param "blogUrl" | strings.TrimPrefix "https://" | strings.TrimPrefix "http://" }}</a>
+    Read more at: <a href="{{ $.Param "blogUrl" }}">{{ $.Param "blogUrl" | strings.TrimPrefix "https://" | strings.TrimPrefix "http://" }}</a>
   </p>
   {{ range .Paginator.Pages }}
     <article class="post-list-item">
