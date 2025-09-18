@@ -20,9 +20,6 @@
 
     <div class="post-body">
       {{ .Content }}
-      {{ if .IsPage  }}
-      {{ partial "disqus.html" . }}
-      {{ end }}
     </div>
   </article>
 </main>
