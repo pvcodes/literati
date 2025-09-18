@@ -3,19 +3,19 @@
 
 name = "Literati"
 license = "MIT"
-licenselink = "https://github.com/keichi/literati/blob/master/LICENSE.md"
+licenselink = "https://github.com/pvcodes/literati/blob/master/LICENSE.md"
 description = ""
-homepage = "https://github.com/keichi/literati"
+homepage = "https://github.com/pvcodes/literati"
 tags = []
 features = []
 min_version = "0.31.1"
 
 [author]
-  name = "Keichi Takahashi"
-  homepage = "https://keichi.dev"
+  name = "Pranjal Verma"
+  homepage = "https://pvcodes.in"
 
 # If porting an existing theme
 [original]
   name = ""
   homepage = ""
-  repo = ""
+  repo = "https://github.com/keichi/literati"
