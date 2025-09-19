@@ -5,16 +5,18 @@
       <h2><a href="{{ .Permalink }}" class="nounderline">{{ .Title }}</a></h2>
       <div class="meta clearfix">
         <div class="date">
-        {{ if not .PublishDate.IsZero }}
-          {{ .PublishDate.Format "January 2, 2006" }}
-        {{ else if not .Date.IsZero }}
-          {{ .Date.Format "January 2, 2006" }}
-        {{ end }}
-        {{ if not .Lastmod.IsZero }}
-          (Updated on: {{ .Lastmod.Format "January 2, 2006" }})
-        {{ end }}
+          {{ if not .PublishDate.IsZero }}
+            {{ .PublishDate.Format "January 2, 2006" }}
+          {{ else if not .Date.IsZero }}
+            {{ .Date.Format "January 2, 2006" }}
+          {{ end }}
+          {{ if and .Params.haslastmod (not .Lastmod.IsZero) }}
+            (Updated on: {{ .Lastmod.Format "January 2, 2006" }})
+          {{ end }}
         </div>
-        <div class="author">by {{ $.Param "author" }}</div>
+        {{ if .Params.Link }}
+        <a href="{{ .Params.Link }}" style="font-size: 1.5rem;" class="author">Read Full Blog</a>
+      {{ end }}
       </div>
     </div>
 
