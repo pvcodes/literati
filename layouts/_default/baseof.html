@@ -19,6 +19,9 @@
     </style>
 
     {{ partial "json-ld.html" . }}
+    {{ if .Param "math" }}
+      {{ partialCached "math.html" . }}
+    {{ end }}
   </head>
   <body>
     <div class="container">
