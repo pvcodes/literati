@@ -1,46 +1,238 @@
-/* CODE
+/* CODE BLOCKS & INLINE CODE
  * ------------------------------------------------ */
+
+/* Inline code */
 code {
-    padding: relative(2px) relative(5px);
-    margin: 0 relative(2px);
-    font-size: 90%;
-    white-space: nowrap;
-    background: $bg-color;
-    font-family: Monaco, Consolas, monospace;
-    border: 1px solid $border-color;
-    border-radius: 3px;
+  padding: 0.2em 0.4em;
+  margin: 0 0.1em;
+  font-size: 0.87em;
+  font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas,
+    "Courier New", monospace;
+  font-weight: 400;
+  line-height: 1.4;
+  white-space: nowrap;
+  background-color: var(--code-bg, rgba(175, 184, 193, 0.2));
+  color: var(--code-text, #d73a49);
+  border: 1px solid var(--code-border, rgba(175, 184, 193, 0.15));
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+/* Hover effect for inline code */
+code:hover {
+  background-color: var(--code-bg-hover, rgba(175, 184, 193, 0.3));
+  border-color: var(--code-border-hover, rgba(175, 184, 193, 0.3));
+}
+
+/* Code blocks */
+pre {
+  position: relative;
+  margin: 1.5em 0;
+  padding: 0;
+  background-color: var(--pre-bg, #f8f9fa);
+  border: 1px solid var(--pre-border, #e1e4e8);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 pre > code {
-    margin: 0;
-    display: block;
-    padding: relative(10px) relative(15px);
-    white-space: pre;
-    overflow: scroll;
-    border: none;
-    border-radius: 0;
+  display: block;
+  margin: 0;
+  padding: 1rem 1.25rem;
+  font-size: 0.85em;
+  line-height: 1.6;
+  white-space: pre;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: transparent;
+  color: var(--pre-text, #24292e);
+  border: none;
+  border-radius: 0;
+  font-weight: 400;
+  tab-size: 2;
+  -moz-tab-size: 2;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb, #c1c7cd)
+    var(--scrollbar-track, transparent);
+}
+
+/* Custom scrollbar for webkit browsers */
+pre > code::-webkit-scrollbar {
+  height: 8px;
+}
+
+pre > code::-webkit-scrollbar-track {
+  background: var(--scrollbar-track, #f1f3f4);
+  border-radius: 4px;
+}
+
+pre > code::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb, #c1c7cd);
+  border-radius: 4px;
+  border: 2px solid var(--scrollbar-track, #f1f3f4);
+}
+
+pre > code::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover, #a8b0b8);
+}
+
+/* Syntax highlighting compatibility */
+.highlight pre,
+.highlight pre > code,
+div.highlight pre,
+div.highlight pre > code {
+  background: var(--highlight-bg, #f8f9fa);
 }
 
 .highlight pre > code {
-    background: none;
+  background: transparent;
 }
 
+/* Language label (if using Hugo's built-in code highlighting) */
+.highlight::before {
+  content: attr(data-lang);
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--lang-label-text, #6a737d);
+  background: var(--lang-label-bg, rgba(255, 255, 255, 0.8));
+  border-bottom-left-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
 
-/* MISC
+/* Copy button container (if implementing copy functionality) */
+.code-block-wrapper {
+  position: relative;
+}
+
+.copy-code-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  background: var(--copy-btn-bg, rgba(255, 255, 255, 0.9));
+  color: var(--copy-btn-text, #586069);
+  border: 1px solid var(--copy-btn-border, #e1e4e8);
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+  z-index: 10;
+}
+
+.code-block-wrapper:hover .copy-code-button {
+  opacity: 1;
+}
+
+.copy-code-button:hover {
+  background: var(--copy-btn-bg-hover, #fff);
+  color: var(--copy-btn-text-hover, #24292e);
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --code-bg: rgba(240, 246, 252, 0.15);
+    --code-text: #79c0ff;
+    --code-border: rgba(240, 246, 252, 0.1);
+    --code-bg-hover: rgba(240, 246, 252, 0.2);
+    --code-border-hover: rgba(240, 246, 252, 0.2);
+    --pre-bg: #161b22;
+    --pre-border: #30363d;
+    --pre-text: #e6edf3;
+    --highlight-bg: #0d1117;
+    --scrollbar-track: #21262d;
+    --scrollbar-thumb: #656c76;
+    --scrollbar-thumb-hover: #768390;
+    --lang-label-text: #7d8590;
+    --lang-label-bg: rgba(13, 17, 23, 0.8);
+    --copy-btn-bg: rgba(13, 17, 23, 0.9);
+    --copy-btn-text: #7d8590;
+    --copy-btn-border: #30363d;
+    --copy-btn-bg-hover: #21262d;
+    --copy-btn-text-hover: #e6edf3;
+  }
+}
+
+/* MISC IMPROVEMENTS
  * ------------------------------------------------ */
+
 img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  transition: transform 0.2s ease;
+}
+
+img:hover {
+  transform: scale(1.02);
 }
 
 blockquote {
-    margin: 0;
-    border-left: 5px solid $border-color;
-    padding-left: 1em;
+  margin: 1.5em 0;
+  padding-left: 1.25em;
+  border-left: 4px solid var(--blockquote-border, #dfe2e5);
+  color: var(--blockquote-text, #6a737d);
+  font-style: italic;
+  position: relative;
+}
+
+blockquote::before {
+  content: '"';
+  position: absolute;
+  left: -0.5em;
+  top: -0.2em;
+  font-size: 2em;
+  color: var(--blockquote-border, #dfe2e5);
+  font-family: serif;
 }
 
 hr {
-    border: 1px solid $border-color;
-    margin: $spacer-double 0;
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--hr-color, #e1e4e8),
+    transparent
+  );
+  margin: 2rem 0;
 }
 
+/* Responsive design */
+@media (max-width: 768px) {
+  pre > code {
+    padding: 0.75rem 1rem;
+    font-size: 0.8em;
+  }
+
+  code {
+    font-size: 0.85em;
+    padding: 0.15em 0.35em;
+  }
+
+  .copy-code-button {
+    position: static;
+    display: block;
+    margin: 0.5rem;
+    opacity: 1;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  code {
+    border-width: 2px;
+  }
+
+  pre {
+    border-width: 2px;
+  }
+}
